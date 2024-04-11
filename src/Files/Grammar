@@ -1,0 +1,54 @@
+start -> expr
+$ expr -> expr expr
+$ expr -> S1 { expr }
+$ expr -> if ( stm ) S1 { expr } S3
+$$ expr -> if ( stm ) S1 { expr } S3 else S1 { expr } S3
+$ expr -> while ( stm ) S1 { expr } S3
+expr -> ε
+$ expr -> type id ;
+$ expr -> type id = stm ;
+$ expr -> id = stm ;
+$ type -> int
+$ type -> long
+$ type -> double
+$ type -> bool
+$ expr -> type id ( param ) S2 { funExpr }
+$ funExpr -> expr return stm ;
+$ funExpr -> if ( stm ) S1 { funExpr } S3 else S1 { funExpr } S3
+$ funExpr -> if ( stm ) S1 { funExpr } S3 else S1 { expr } S3 funExpr
+funExpr -> if ( stm ) S1 { expr } S3 else S1 { funExpr } S3 funExpr
+funExpr -> if ( stm ) S1 { expr } S3 else S1 { expr } S3 funExpr
+$ funExpr -> if ( stm ) S1 { funExpr } S3 funExpr
+$ funExpr -> while ( stm ) S1 { funExpr } S3 funExpr
+$ funExpr -> S1 { funExpr }
+$ param -> param , param
+$ param -> type id
+param -> ε
+$ arg -> arg , arg
+$ arg ->  stm
+arg -> ε
+$ stm -> stm + stm
+$ stm -> stm - stm
+$$ stm -> stm * stm
+$$ stm -> stm / stm
+$$ stm -> stm & stm
+$ stm -> stm | stm
+$ stm -> stm ++
+$ stm -> stm --
+$ stm -> - stm
+$ stm -> ! stm
+$ stm -> stm != stm
+$ stm -> stm == stm
+$ stm -> stm < stm
+$ stm -> stm > stm
+$ stm -> stm <= stm
+$ stm -> stm >= stm
+$ stm -> id
+$ stm -> const
+$ stm -> true
+$ stm -> false
+$ stm -> id ( arg )
+$ stm -> ( stm )
+$ S1 -> ε
+$$ S2 -> ε
+$ S3 -> ε

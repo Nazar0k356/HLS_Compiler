@@ -1,0 +1,7 @@
+sub RSP, 8
+mov RAX, 8
+mov RBX, RAX
+
+
+mov RAX, 0
+finish:
